@@ -15,8 +15,7 @@ var isValid = function(s) {
             if(poppedValue !== map[s[i]]) return false
         }
     }
-    if(stack.isEmpty()) return true
-    return false
+    return stack.isEmpty()
 };
 
 console.log(isValid("()[]{}"))

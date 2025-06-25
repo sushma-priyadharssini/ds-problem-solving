@@ -20,9 +20,9 @@ function subString1(str,n) {
             // point.
             let j = i + len - 1;
             for (let k = i; k <= j; k++) {
-                document.write(str[k]);
+                console.log(str[k]);
             }
-            document.write("<br>");
+            console.log("<br>");
         }
     }
 }

@@ -10,13 +10,23 @@ Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
  */
 
-var canJump = function(nums) {
-    let max = 0 ;
-    for(let i=0; i<nums.length; i++) {
-        if(i > max) return false;
-        max = Math.max(max, i+nums[i])
-    }
-    return true;
+var canJump = function (nums) {
+  let max = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (i > max) return false;
+    max = Math.max(max, i + nums[i]);
+  }
+  return true;
 };
 
-console.log(canJump([3,2,1,0,4]))
+var canJump1 = function (nums) {
+  let goal = nums.length - 1;
+  for (let i = goal; i >= 0; i--) {
+    if (i + nums[i] >= goal) {
+      goal = i;
+    }
+  }
+  return goal === 0;
+};
+
+console.log(canJump([3, 2, 1, 0, 4]));

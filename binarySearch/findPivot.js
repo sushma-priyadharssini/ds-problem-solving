@@ -23,3 +23,4 @@ function findLargest(arr) {
 }
 
 console.log(findLargest(array))
+console.log(findLargest([0,1]))

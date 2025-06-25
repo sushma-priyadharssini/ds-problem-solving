@@ -42,7 +42,6 @@ function evaluate(str) {
       val.push(parseInt(num, 10))
     	i--;
     }
-    console.log(val, ops)
     
     if(arr[i] === ')') {
     	while(ops[ops.length-1]!=='(') {

@@ -11,33 +11,29 @@ Example 3:
 Input: nums = [1]
 Output: [[1]] */
 
-var combinations = function(choices, temp = [], permutations = []) {
-    // Base case 
-    if(choices.length === 0){
-      permutations.push([...temp]);
-    } 
+var combinations = function (choices, temp = [], permutations = []) {
+  // Base case
+  if (choices.length === 0) {
+    permutations.push([...temp]);
+  }
 
-    for(let i = 0; i < choices.length; i++){
-        // Create new array without current letter
-        let newChoices = choices.filter((choice, index) => index !== i)
-        // Add current to the temp array which is our current permutation
-        temp.push(choices[i])
-        console.log(temp);
-        combinations(newChoices, temp, permutations)
-        // Once we have explored options remove the current letter from our current permuataion
-        temp.pop()
-        console.log(temp);
+  for (let i = 0; i < choices.length; i++) {
+    // Create new array without current letter
+    let newChoices = choices.filter((choice, index) => index !== i);
+    // Add current to the temp array which is our current permutation
+    temp.push(choices[i]);
+    console.log("push temp", newChoices, temp);
+    combinations(newChoices, temp, permutations);
+    // Once we have explored options remove the current letter from our current permuataion
+    temp.pop();
+    console.log("pop temp", newChoices, temp);
+  }
 
-    }
-
-    return permutations
+  return permutations;
 };
 
-
 var permute = function (nums) {
-    return combinations(nums)
-}
+  return combinations(nums);
+};
 
-
-
-console.log(permute([1,2,3]))
+console.log(permute([1, 2, 3]));

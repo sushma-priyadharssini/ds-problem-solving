@@ -1,14 +1,26 @@
 function maximumDifference(nums) {
-    let maxDiff=nums[1]-arr[0]
-    let minEl=nums[0]
+    let maxDiff = nums[1] - nums[0]
+    let minEl = nums[0]
 
-    for(let i=0;i<nums.length;i++) {
-        if(arr[i]-minEl > maxDiff) {
-            maxDiff=arr[i]-minEl
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] - minEl > maxDiff) {
+            maxDiff = nums[i] - minEl
         }
-        if(arr[i]<minEl) minEl=arr[i]
+        if (nums[i] < minEl) minEl = nums[i]
     }
     return maxDiff
 }
 
-console.log(maximumDifference([ 1, 2, 90, 10, 110 ]))
+function maximumDifference1(nums) {
+    let minEl = Infinity;
+    let maxEl = -Infinity;
+
+    for (let i = 0; i < nums.length; i++) {
+        minEl = Math.min(minEl, nums[i])
+        maxEl = Math.max(maxEl, nums[i])
+
+    }
+    return maxEl - minEl
+}
+
+console.log(maximumDifference1([1, 2, 90, 10, 110]))

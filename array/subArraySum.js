@@ -45,6 +45,23 @@ function subArraySum(arr, n, sum) {
     }
     else {
         document.write("Sum found between indexes "
-                        + start + " to " + end);
+            + start + " to " + end);
     }
 }
+
+var subArraySum1 = function (nums, target) {
+    let l = 0,
+        sum = 0;
+
+    for (let r = 0; r < nums.length; r++) {
+        sum += nums[r];
+        while (sum >= target) {
+            if (sum === target) console.log(r, l)
+            sum -= nums[l];
+            l++;
+        }
+    }
+
+};
+
+subArraySum1([10, 2, -2, -20, 10], -10)

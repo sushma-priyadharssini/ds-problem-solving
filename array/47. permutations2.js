@@ -11,34 +11,30 @@ Input: nums = [1,2,3]
 Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
  */
 
-var combinations = function(choices, temp = [], permutations = []) {
-    // Base case 
-    if(choices.length === 0){
-        permutations.push([...temp]);
-    } 
+function combinations(choices, used, temp = [], permutations = []) {
+  if (temp.length === choices.length) {
+    permutations.push([...temp]);
+  }
 
-    for(let i = 0; i < choices.length; i++){
-        if (choices[i] === choices[i - 1]) continue;
-        // Create new array without current letter
-        let newChoices = choices.filter((choice, index) => index !== i)
-        // Add current to the temp array which is our current permutation
-        temp.push(choices[i])
-        console.log(temp);
-        combinations(newChoices, temp, permutations)
-        // Once we have explored options remove the current letter from our current permuataion
-        temp.pop()
-        console.log(temp);
-
+  for (let i = 0; i < choices.length; i++) {
+    if (used[i] || (i > 0 && choices[i] === choices[i - 1] && !used[i - 1])) {
+      continue;
     }
-
-    return permutations
-};
-
-
-var permute = function (nums) {
-    return combinations(nums)
+    used[i] = true;
+    temp.push(choices[i]);
+    combinations(choices, used, temp, permutations);
+    used[i] = false;
+    temp.pop();
+  }
+  return permutations;
 }
 
+var permuteUnique = function (nums) {
+  nums.sort((a, b) => a - b);
+  return combinations(
+    nums,
+    nums.map(() => false)
+  );
+};
 
-
-console.log(permute([1,1,2]))
+console.log(permuteUnique([1, 1, 2]));

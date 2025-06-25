@@ -5,15 +5,15 @@ Note that the five elements can be returned in any order.
 It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 
-var removeElement = function(nums, val) {
-    let i = 0 ;
-    for(j=0;j<nums.length;j++) {
-        if(nums[j] !== val) {
-           nums[i] = nums[j]
-            i++;
-        }
+var removeElement = function (nums, val) {
+  let i = 0;
+  for (j = 0; j < nums.length; j++) {
+    if (nums[j] !== val) {
+      nums[i] = nums[j];
+      i++;
     }
-    return i;
+  }
+  return i;
 };
 
-console.log(removeElement([0,1,2,2,3,0,4,2], 2));
+console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2));

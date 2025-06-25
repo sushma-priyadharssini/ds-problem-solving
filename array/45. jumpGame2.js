@@ -8,8 +8,7 @@ Example 2:
 Input: nums = [2,3,0,1,4]
 Output: 2 */
 
-
-var jump = function(nums) {
+var jump = function (nums) {
   var len = nums.length;
   var step = 0;
   var now = 0;
@@ -26,4 +25,22 @@ var jump = function(nums) {
   return step;
 };
 
-console.log(jump([2,3,1,1,4]));
+var jump1 = function (nums) {
+  let l = 0,
+    r = 0,
+    res = 0,
+    farthest = 0;
+
+  while (r < nums.length - 1) {
+    for (let i = l; i <= r; i++) {
+      farthest = Math.max(farthest, i + nums[i]);
+    }
+    l = r + 1;
+    r = farthest;
+    res += 1;
+  }
+
+  return res;
+};
+
+console.log(jump([2, 3, 1, 1, 4]));

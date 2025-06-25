@@ -24,14 +24,16 @@ var nextPermutation = function(nums) {
     while(i >= 0 && nums[i] >= nums[i+1]) {
         i--;
     }
+    console.log(nums[i])
     if(i>=0) {
         let j=l-1;
         while(nums[j]<=nums[i]){ j--; }
+        console.log(nums[j])
         swap(nums, i, j);
     }
     reverse(nums, i+1)
 };
 
-let nums = [1,2,3];
+let nums = [1,2,3, 1];
 nextPermutation(nums);
 console.log(nums);

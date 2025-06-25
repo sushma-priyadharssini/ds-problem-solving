@@ -7,12 +7,11 @@ var containsDuplicate = function(nums) {
   for(let i=0; i<nums.length; i++) {
       if(myMap.has(nums[i])) {
           return true;
-      } else if(i === nums.length-1) {
-          return false;
       } else {
           myMap.set(nums[i], 1);
       }
   }
+  return false;
 };
 
 var containsDuplicate = (nums) => {

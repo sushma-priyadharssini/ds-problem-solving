@@ -22,4 +22,19 @@ function sort1sAnd0s(arr) {
   return arr;
 }
 
-console.log(sort1sAnd0s([0, 1, 0, 1, 0, 1, 0]));
+function sort1sAnd0s2(arr) {
+  let p = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 0) {
+      [arr[p], arr[i]] = [arr[i], arr[p]];
+      p++;
+    }
+  }
+  return arr;
+}
+
+console.log(sort1sAnd0s2([0, 1, 0, 1, 0, 1, 0]));
+console.log(sort1sAnd0s2([0, 0, 0, 0]));
+console.log(sort1sAnd0s2([1, 1, 1, 1]));
+console.log(sort1sAnd0s2([1, 0, 0, 0]));

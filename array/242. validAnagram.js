@@ -40,3 +40,15 @@ var isAnagram = function(s, t) {
         return false;
     }
 };
+
+var isAnagram1 = function(s, t) {
+    if(s.length !== t.length) return false;
+
+    let myMap = new Map();
+    for(let i =0; i<s.length; i++) {
+        myMap.set(s[i], (myMap.get(s[i]) || 0) + 1);
+        myMap.set(t[i], (myMap.get(t[i]) || 0) - 1);
+    }
+
+    return myMap.values().every(v => v===0);
+};
