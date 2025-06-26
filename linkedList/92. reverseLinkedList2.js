@@ -1,4 +1,4 @@
-import ListNode from './linkedList.js';
+import ListNode from './index.js';
 
 var reverseBetween = function(head, left, right) {
     let newHead = new ListNode(0);

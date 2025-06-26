@@ -6,7 +6,7 @@ export default class Queue extends Array {
     return super.shift();
   }
   peek() {
-    return !this.empty() ? this[0] : undefined;
+    return !this.isEmpty() ? this[0] : undefined;
   }
   isEmpty() {
     return this.length === 0;

@@ -1,4 +1,4 @@
-import ListNode from './linkedList.js';
+import ListNode from './index.js';
 
 /* 
 Input: head = [-10,-3,0,5,9]

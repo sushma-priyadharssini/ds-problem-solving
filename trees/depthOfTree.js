@@ -1,25 +1,27 @@
+import TreeNode from "./index.js";
+
 function depthOfTree(ptr) {
     if (ptr == null) return 0;
-   
+
     var maxdepth = 0;
-    for(var it of ptr.child)
+    for (var it of ptr.descendants)
         maxdepth = Math.max(maxdepth, depthOfTree(it));
- 
-    return maxdepth + 1 ;
+
+    return maxdepth + 1;
 }
 
-var root = newNode('A');
-(root.child).push(newNode('B'));
-(root.child).push(newNode('F'));
-(root.child).push(newNode('D'));
-(root.child).push(newNode('E'));
-(root.child[0].child).push(newNode('K'));
-(root.child[0].child).push(newNode('J'));
-(root.child[2].child).push(newNode('G'));
-(root.child[3].child).push(newNode('C'));
-(root.child[3].child).push(newNode('H'));
-(root.child[3].child).push(newNode('I'));
-(root.child[0].child[0].child).push(newNode('N'));
-(root.child[0].child[0].child).push(newNode('M'));
-(root.child[3].child[2].child).push(newNode('L'));
-document.write(depthOfTree(root) + "<br>");
+var root = new TreeNode('A');
+(root.descendants).push(new TreeNode('B'));
+(root.descendants).push(new TreeNode('F'));
+(root.descendants).push(new TreeNode('D'));
+(root.descendants).push(new TreeNode('E'));
+(root.descendants[0].descendants).push(new TreeNode('K'));
+(root.descendants[0].descendants).push(new TreeNode('J'));
+(root.descendants[2].descendants).push(new TreeNode('G'));
+(root.descendants[3].descendants).push(new TreeNode('C'));
+(root.descendants[3].descendants).push(new TreeNode('H'));
+(root.descendants[3].descendants).push(new TreeNode('I'));
+(root.descendants[0].descendants[0].descendants).push(new TreeNode('N'));
+(root.descendants[0].descendants[0].descendants).push(new TreeNode('M'));
+(root.descendants[3].descendants[2].descendants).push(new TreeNode('L'));
+console.log(depthOfTree(root));

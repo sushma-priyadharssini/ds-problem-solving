@@ -1,11 +1,11 @@
-import BinaryTreeNode from "./binaryTree.js";
+import BinaryTreeNode from "./index.js";
 
-var sumOfLeftLeaves = function(root) {
-    let sum=0;
+var sumOfLeftLeaves = function (root) {
+    let sum = 0;
     function recursive(node) {
-        if (node===null) return;
-        if(node.left===null && node.right===null) {
-            sum=sum+node.value
+        if (node === null) return;
+        if (node.left === null && node.right === null) {
+            sum = sum + node.value
         }
         recursive(node.left)
         recursive(node.right)

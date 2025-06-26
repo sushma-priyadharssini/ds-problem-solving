@@ -1,4 +1,4 @@
-import ListNode from './linkedList.js';
+import ListNode from './index.js';
 
 var addTwoNumbers = function(l1, l2) {
     let dummyHead = new ListNode(0);
