@@ -13,7 +13,7 @@ function subArraySum1(arr, sum) {
   return "Not found";
 }
 
-// Time Complexity : O(n).
+// Time Complexity : O(n) - only for positive integers
 function subArraySum2(arr, sum) {
   let n = arr.length;
   let currSum = arr[0];
@@ -62,4 +62,4 @@ var subarraySum3 = function (nums, k) {
 
 let arr = [15, 2, 4, 8, 9, 5, 10, 23];
 let sum = 23;
-console.log(subArraySum3(arr, sum));
+console.log(subArraySum2(arr, sum));
