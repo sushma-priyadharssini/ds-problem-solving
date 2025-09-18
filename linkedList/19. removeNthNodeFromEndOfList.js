@@ -25,28 +25,27 @@ var removeNthFromEnd1 = function (head, n) {
 };
 
 var removeNthFromEnd2 = function (head, n) {
-    let fast = head;
-    let slow = head;
-    let i = 1;
-    while (i !== n) {
+    let dummy = new ListNode(0);
+    dummy.next = head;
+
+    let fast = dummy;
+    let slow = dummy;
+
+    // move fast ahead by n+1 steps
+    for (let i = 0; i <= n; i++) {
         fast = fast.next;
-        i++;
     }
 
-    while (fast.next !== null && fast.next.next !== null) {
+    // move both until fast hits the end
+    while (fast) {
         fast = fast.next;
         slow = slow.next;
-        i++;
     }
 
-    if (i === n) {
-        head = head.next
-    } else {
-        let temp = slow.next;
-        slow.next = temp.next;
-    }
+    // delete the nth node
+    slow.next = slow.next.next;
 
-    return head;
+    return dummy.next;
 };
 
 var a = new ListNode(2, new ListNode(4, new ListNode(3, new ListNode(7, new ListNode(6)))));
