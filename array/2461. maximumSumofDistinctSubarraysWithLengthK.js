@@ -26,22 +26,28 @@ var maximumSubarraySum = function (nums, k) {
     let l = 0, sum = 0, maxSum = 0;
     let mySet = new Set();
     for (let r = 0; r < nums.length; r++) {
-        console.log("has", nums[r], mySet)
-        if (mySet.has(nums[r])) {
-            continue;
-        }
-        if (r - l + 1 > k) {
+        // Remove elements until nums[r] is unique
+        while (mySet.has(nums[r])) {
+            mySet.delete(nums[l]);
             sum -= nums[l];
-            l = l + 1;
-            mySet.delete(nums[r])
+            l++;
         }
-        sum += nums[r];
         mySet.add(nums[r]);
-        maxSum = Math.max(maxSum, sum);
-        console.log(sum, maxSum)
+        sum += nums[r];
+
+        // If window exceeds k, shrink it
+        if (r - l + 1 > k) {
+            mySet.delete(nums[l]);
+            sum -= nums[l];
+            l++;
+        }
+        // Check if window is exactly k and all distinct
+        if (r - l + 1 === k) {
+            maxSum = Math.max(maxSum, sum);
+        }
     }
-    return mySet.size < k ? 0 : maxSum
+    return maxSum;
 };
 // console.log(maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3))
 // console.log(maximumSubarraySum([4, 4, 4], 3))
-console.log(maximumSubarraySum([1,1,1,7,8,9], 3))
+console.log(maximumSubarraySum([1, 1, 1, 7, 8, 9], 3))
