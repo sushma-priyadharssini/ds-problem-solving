@@ -1,47 +1,50 @@
 
-// dp approach - Time Complexity: O(k*n^2), Auxiliary Space: O(n*k). 
-var superEggDrop = function(k, n) {
-    let dp = Array(n)
-    for(let i=0;i<(n+1);i++) {
-        dp[i]=new Array(k+1);
-    }
+// dp approach - Time Complexity: O(k*n*logn), Auxiliary Space: O(n*k). 
+var superEggDrop = function (k, n, memo = {}) {
+    if (k === 1) return n;
+    if (n === 0 || n === 1) return n;
 
-    for(let i=1;i<=n;i++) {
-        dp[i][1] = i
-    }
+    let key = k + ',' + n;
+    if (key in memo) return memo[key];
 
-    for(let i=1;i<=k;i++) {
-        dp[0][i] = 0
-        dp[1][i] = 1
-    }
+    let low = 1, high = n, min = Number.MAX_VALUE;
 
-    for(let i=2; i<=n; i++) {
-        for(let j=2; j<=k; j++) {
-            dp[i][j] = Number.MAX_VALUE;
-            for(let x=1; x<=i; x++) {
-                let res = 1+ Math.max(dp[x-1][j-1], dp[i-x][j])
-                if(res<dp[i][j]) dp[i][j]=res
-            }
+    while (low <= high) {
+        let mid = Math.floor((low + high) / 2);
+
+        let breaks = superEggDrop(k - 1, mid - 1, memo);
+        let survives = superEggDrop(k, n - mid, memo);
+
+        let worst = 1 + Math.max(breaks, survives);
+        min = Math.min(min, worst);
+
+        if (breaks > survives) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
         }
     }
 
-    return dp[n][k]
+    memo[key] = min;
+    return min;
 }
 
 
 // Recursive approach -  time complexity is exponential, Auxiliary Space :O(1).
-let superEggDrop1 = function(k, n) {
-    if(k===1) return n
-    if(n===1 || n===0) return n
+let superEggDrop1 = function (k, n, memo = {}) {
+    if (k === 1) return n
+    if (n === 1 || n === 0) return n
+    let key = k + ',' + n;
+    if (key in memo) return memo[key];
 
     let min = Number.MAX_VALUE;
     let x, res;
 
-    for(x=1; x<=n; x++) {
-        res = Math.max(superEggDrop1(k-1, x-1), superEggDrop1(k, n-x))
-        if(res<min) min=res
+    for (x = 1; x <= n; x++) {
+        res = Math.max(superEggDrop1(k - 1, x - 1), superEggDrop1(k, n - x))
+        if (res < min) min = res
     }
-    return min+1
-    
+    return min + 1
+
 }
-console.log(superEggDrop(8,10000))
+console.log(superEggDrop(8, 10000))
