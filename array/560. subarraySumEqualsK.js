@@ -44,22 +44,50 @@ Input: nums = [1,2,3], k = 3
 Output: 2
 */
 
+// This works for both positive and negative integers
+// Use a prefix sum and a hash map to count how many times a given prefix appears.
 var subarraySum3 = function (nums, k) {
-  let currSum = 0,
-    prefixMap = new Map(),
-    res = 0;
-  prefixMap.set(0, 1);
+  let count = 0;
+  let sum = 0;
+  let prefixMap = new Map();
+  prefixMap.set(0, 1); // Base case: one way to have sum 0 before starting
 
   for (let num of nums) {
-    currSum += num;
-    const diff = currSum - k;
-    res += prefixMap.get(diff) || 0;
-    prefixMap.set(currSum, (prefixMap.get(currSum) || 0) + 1);
+    sum += num;
+
+    // Check if there's a prefix sum that would make current subarray sum = k
+    if (prefixMap.has(sum - k)) {
+      count += prefixMap.get(sum - k);
+    }
+
+    // Record the current prefix sum
+    prefixMap.set(sum, (prefixMap.get(sum) || 0) + 1);
   }
 
-  return res;
+  return count;
 };
 
 let arr = [15, 2, 4, 8, 9, 5, 10, 23];
 let sum = 23;
-console.log(subArraySum2(arr, sum));
+console.log(subarraySum3(arr, sum));
+
+
+// This works only for non negative integers
+var subarraySum4 = function (nums, k) {
+  let total = 0;
+  let l = 0;
+  let sum = 0;
+
+  for (let r = 0; r < nums.length; r++) {
+    sum += nums[r];
+    while (sum > k && l <= r) {
+      sum -= nums[l];
+      l++;
+    }
+    if (sum === k) {
+      total += 1;
+    }
+
+  }
+  return k === 0 ? 0 : total;
+};

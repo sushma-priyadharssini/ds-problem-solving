@@ -24,17 +24,15 @@ var numRescueBoats = function (people, limit) {
   }
 
   let boats = 0;
+  let l = 0, r = people.length - 1
 
-  let p1 = 0;
-  let p2 = people.length - 1;
-
-  while (p1 <= p2) {
-    let remain = limit - people[p2];
-    p2--;
+  while (l <= r) {
+    let weight = people[l] + people[r];
     boats++;
-    if (p1 <= p2 && remain >= people[p1]) {
-      p1++;
+    if (weight <= limit) {
+      r--
     }
+    l++
   }
-  return boats;
+  return boats
 };
